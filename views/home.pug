@@ -13,14 +13,14 @@ block content
                 a.desc #{note.desc}
               span
                 a.btn-delete(href=`/notes/${note.id}/delete`) Delete 
-                a.btn-update(href=`/notes/${note.id}/saveDraft`) Crossing
+                a.btn-update(href=`/notes/${note.id}/cross`) Crossing
                 a.btn-update(href=`/notes/${note.id}/edit`) Update
             else 
               span
                 a.crossed #{note.desc}
               span
                 a.btn-delete(href=`/notes/${note.id}/delete`) Delete 
-                a.btn-update(href=`/notes/${note.id}/saveDraft`) Crossing
+                a.btn-update(href=`/notes/${note.id}/cross`) Crossing
                 a.btn-update(href=`/notes/${note.id}/edit`) Update
       else 
         p.No-note There is not any note here..
@@ -40,14 +40,14 @@ block content
                 a.desc #{note.desc}
               span
                 a.btn-delete(href=`/notes/${note.id}/delete`) Delete 
-                a.btn-update(href=`/notes/${note.id}/saveDraft`) Crossing
+                a.btn-update(href=`/notes/${note.id}/cross`) Crossing
                 a.btn-update(href=`/notes/${note.id}/edit`) Update
             else 
               span
                 a.crossed #{note.desc}
               span
                 a.btn-delete(href=`/notes/${note.id}/delete`) Delete 
-                a.btn-update(href=`/notes/${note.id}/saveDraft`) Crossing
+                a.btn-update(href=`/notes/${note.id}/cross`) Crossing
                 a.btn-update(href=`/notes/${note.id}/edit`) Update
         if success
           p.success Your Note Has been Updated Successfully

@@ -80,6 +80,60 @@ app.post("/add",(req,res)=>{
     
 
 
+
+app.get("/notes/:id/cross",(req,res)=>{
+    const id=req.params.id;
+    
+    fs.readFile(Database,(err,data)=>{
+        if(err) throw err;
+    
+    
+    
+        const notes=JSON.parse(data);
+    
+        const newNote=notes.filter(e=> e.id===id)[0]
+        const indexNote=notes.indexOf(newNote);
+    
+        const SplicedNote=notes.splice(indexNote,1)[0];
+    
+        if(!SplicedNote.crossed) SplicedNote.crossed=true;
+        else SplicedNote.crossed=false
+        // if(!SplicedNote.draft) SplicedNote.draft=true;
+        // else SplicedNote.draft=false
+        
+    
+        notes.push(SplicedNote);
+    
+        fs.writeFile(Database,JSON.stringify(notes),err=>{
+            if(err) throw err;
+    
+            fs.readFile(Database,(err,data)=>{
+                if(err) throw err;
+    
+                   const notes=JSON.parse(data) 
+                
+                   res.render("home",{notes:notes,create:true})
+    
+    
+            })
+    
+        })
+    
+    
+    
+    })
+    
+    
+    })
+
+
+
+    function id() {
+        return  Math.random().toString(36)
+      };
+    
+    
+
 app.listen(PORT,()=>{
     console.log("This app is running on the PORT "+ PORT);
 
