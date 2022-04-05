@@ -28,6 +28,7 @@ node index
 
 - express
 - pug
+- nodemon
 
 ### Link to github repo
 https://github.com/VIPMan0001/WebTechCW2.git
