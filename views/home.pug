@@ -1,0 +1,59 @@
+extends layout.pug 
+
+block content
+  p.main-title This web application was created to fulfill Web Technology module's requirements and does not represent an actual company or service
+  .main-container
+    h1.title This is a simple Note-taking app for daily uses
+    if create
+      if notes.length
+        each note in notes
+          p.note
+            if !note.crossed
+              span
+                a.desc #{note.desc}
+              span
+                a.btn-delete(href=`/notes/${note.id}/delete`) Delete 
+                a.btn-update(href=`/notes/${note.id}/saveDraft`) Crossing
+                a.btn-update(href=`/notes/${note.id}/edit`) Update
+            else 
+              span
+                a.crossed #{note.desc}
+              span
+                a.btn-delete(href=`/notes/${note.id}/delete`) Delete 
+                a.btn-update(href=`/notes/${note.id}/saveDraft`) Crossing
+                a.btn-update(href=`/notes/${note.id}/edit`) Update
+      else 
+        p.No-note There is not any note here..
+      if success 
+        p.success Your Note Has been Added Successfully
+      if error 
+        p.error You Cannot Submit Empty Form
+      form.form(action="/add" method="POST")
+        input.add-input(type="text" placeholder="Add your Note here..." name="desc")
+        button.btn-submit New Note
+    if edit
+        if notes.length
+        each note in notes
+          p.note
+            if !note.crossed
+              span
+                a.desc #{note.desc}
+              span
+                a.btn-delete(href=`/notes/${note.id}/delete`) Delete 
+                a.btn-update(href=`/notes/${note.id}/saveDraft`) Crossing
+                a.btn-update(href=`/notes/${note.id}/edit`) Update
+            else 
+              span
+                a.crossed #{note.desc}
+              span
+                a.btn-delete(href=`/notes/${note.id}/delete`) Delete 
+                a.btn-update(href=`/notes/${note.id}/saveDraft`) Crossing
+                a.btn-update(href=`/notes/${note.id}/edit`) Update
+        if success
+          p.success Your Note Has been Updated Successfully
+        if error 
+          p.error You Cannot Update Empty Form
+        form.form(action=`/edit` method="POST")
+          input.add-input(type="text" placeholder="Update your Note here..." name="desc" value=`${EditNote.desc || " " }`)
+          button.btn-submit Update Your Note
+    
