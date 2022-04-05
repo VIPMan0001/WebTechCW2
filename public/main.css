@@ -1,0 +1,94 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.main-container  {
+    max-width: 1100px;
+    margin: 150px auto;
+}
+
+.title {
+    text-align: center;
+    
+}
+
+.form {
+    width: 100%;
+    font-size: 25pt;
+
+}
+
+.add-input {
+    display: block;
+    margin: 50px auto;
+    width: 90%;
+    padding: 20px;
+    font-size: 20px;
+}
+
+.btn-submit {
+    display: block;
+    width: 90%;
+    border: none;
+    font-size: 1.2rem;
+    margin: 0 auto;
+    padding:20px;
+    color: white;
+    background-color: rgba(106, 153, 255, 0.603);
+}
+.note {
+    width: 90%;
+    padding:  20px;
+    display: flex;
+    margin: 10px auto;
+    justify-content: space-between;
+    background-color: #ccc;
+}
+
+.btn-delete,.btn-update {
+    text-decoration: none;
+    padding: 10px;
+    color: white;
+
+}
+
+
+
+.error,.success {
+    margin: 20px auto;
+   width: 90%;
+   padding: 20px;
+   font-size: 1.2rem;
+   background-color: green;
+   color: white;
+
+}
+
+
+.error {
+    background-color: red;
+}
+.No-note {
+    font-size: 1.3rem;
+    width: 90%;
+    padding: 20px;
+    background-color: rgb(123, 165, 255);
+    margin:  10px auto;
+    text-align: center;
+}
+
+.crossed {
+    text-decoration: line-through;
+}
+
+.main-title {
+    text-align: center;
+    font-size: 1.5rem;
+    background-color: rgb(247, 154, 154);
+    padding: 20px;
+}
+a {
+    font-size: 1.3rem;
+}
