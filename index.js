@@ -127,6 +127,38 @@ app.get("/notes/:id/cross",(req,res)=>{
     })
 
 
+    
+
+app.get("/notes/:id/delete",(req,res)=>{
+    const Id=req.params.id;
+
+    fs.readFile(Database,(err,data)=>{
+        if(err) throw err;
+
+
+        const notes=JSON.parse(data);
+
+        const NewNotes=notes.filter(e=>e.id!==Id)
+
+        fs.writeFile(Database,JSON.stringify(NewNotes),(err)=>{
+            if(err) throw err;
+
+
+            
+            res.redirect("/")
+
+            
+
+        })
+        
+
+
+    })
+
+})
+
+
+
 
     function id() {
         return  Math.random().toString(36)
