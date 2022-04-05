@@ -160,6 +160,103 @@ app.get("/notes/:id/delete",(req,res)=>{
 
 
 
+
+app.get("/notes/:id/edit",(req,res)=>{
+    const id=req.params.id;
+
+
+
+    fs.readFile(Database,(err,data)=>{
+        if(err) throw err;
+
+
+        const notes=JSON.parse(data);
+
+        const note=notes.filter(e=>e.id==id)[0]
+        const NoteIndex=notes.indexOf(note);
+        const SplicedNote=notes.splice(NoteIndex,1)[0];
+
+        fs.writeFile(Database,JSON.stringify(notes),err=>{
+            if(err) throw err;
+
+            fs.readFile(Database,(err,data)=>{
+                if(err) throw err;
+
+                const notes=JSON.parse(data);
+
+                res.render("home",{edit:true,EditNote:SplicedNote,notes:notes,NoteId:id })
+               
+            })
+
+        })
+
+       
+
+
+    })
+
+
+})
+
+
+app.post("/edit",(req,res)=>{
+    
+    const UpdateData=req.body;
+
+
+    if(UpdateData.desc.length===0) {
+        fs.readFile(Database,(err,data)=>{
+            if(err) throw err;
+    
+            const notes=JSON.parse(data);
+
+        res.render("home",{ notes:notes, error:true})
+        })
+    }
+    else {
+        fs.readFile(Database,(err,data)=>{
+            if(err) throw err;
+    
+            const notes=JSON.parse(data);
+
+            
+    
+            const note={
+                id:id(),
+                desc:UpdateData.desc,
+                draft:UpdateData.draft,
+                crossed:UpdateData.crossed
+            }
+    
+            notes.push(note);
+    
+            fs.writeFile(Database,JSON.stringify(notes),err=>{
+                if(err) throw err;
+                
+                fs.readFile(Database,(err,data)=>{
+                    if(err) throw err;
+
+                    const dataa=JSON.parse(data)
+                    
+                    if(req.url==="/edit") res.redirect("/")
+                    else res.render("home",{ success:true , notes:dataa,edit:true,EditNote:note.desc })
+                    // res.redirect("/")
+                })
+             
+              
+            })
+            
+    
+        })
+            
+    }
+
+
+})
+
+
+
+
     function id() {
         return  Math.random().toString(36)
       };
